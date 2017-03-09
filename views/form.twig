@@ -1,0 +1,22 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    
+    <form action="/form" method="post">
+        <label for="comment" >Add comment</label>
+        <input type="text" name="comment" placeholder="add a comment" />
+        <input type="submit" value="Save" />        
+    </form>
+</br>
+</br>
+
+{% for comment in comments %}
+    <h3>{{comment.title}}</h3>
+    <a href="/form/delete/{{comment._id}}" >Delete</a>
+{% endfor%}
+
+</br>
+</br>
+
+{% endblock %}
