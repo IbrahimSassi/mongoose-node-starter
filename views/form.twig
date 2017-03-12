@@ -2,21 +2,23 @@
 
 {% block content %}
     <h1>{{ title }}</h1>
-    
+
     <form action="/form" method="post">
+        <input type="hidden" name="id" value="{{ comment._id }}">
         <label for="comment" >Add comment</label>
-        <input type="text" name="comment" placeholder="add a comment" />
-        <input type="submit" value="Save" />        
+        <input type="text" name="comment" placeholder="add a comment" value="{{ comment.title }}" />
+        <input type="submit" value="Save" />
+        <input type="reset" onclick="window.location='/form'">
     </form>
-</br>
-</br>
+    </br>
+    </br>
 
-{% for comment in comments %}
-    <h3>{{comment.title}}</h3>
-    <a href="/form/delete/{{comment._id}}" >Delete</a>
-{% endfor%}
+    {% for comment in comments %}
+        <h3>{{comment.title}}</h3>
+        <a href="/form/delete/{{comment._id}}" >Delete</a>
+        <a href="/form?id={{ comment._id }}">Edit</a>
+    {% endfor%}
 
-</br>
-</br>
-
+    </br>
+    </br>
 {% endblock %}
